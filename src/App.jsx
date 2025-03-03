@@ -18,6 +18,7 @@ const App = () => {
     const [isAnswered, setIsAnswered] = useState(false);
     const [options, setOptions] = useState([]);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const baseUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         fetchDestinations();
@@ -25,7 +26,7 @@ const App = () => {
 
     const fetchDestinations = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/destinations");
+            const response = await axios.get(`${baseUrl}/destinations`);
             setDestinations(response.data);
             selectRandomDestination(response.data);
         } catch (error) {
